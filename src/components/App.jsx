@@ -58,13 +58,7 @@ const App = () => {
     getImages();
   }, [query, pageNr]);
 
-  
 
-  const handleInputChange = evt => {
-    // const { name, value } = evt.target;
-    // this.setState({ [name]: value });
-    setQuery(evt.currentTarget.value);
-  };
 
   const handleSearchQuerySubmit = newSearch => {
     setQuery(newSearch);
@@ -74,17 +68,6 @@ const App = () => {
     setIsLoading(true);
   };
 
-  
-  // const onLoadMore = async() => {
-  //   const response = await fetchImages(
-  //     setQuery(),
-  //     setPageNr(prevPage => prevPage + 1),
-  //   );
-  //   return {
-  //     setImages([...images, ...response]),
-  //     setPageNr(prevPage => prevPage + 1)
-  //   };
-  // }
 
    const onLoadMore = () => {
     setIsLoading(true);
@@ -97,22 +80,15 @@ const App = () => {
     toggleModal(!isLoading);
   };
 
-  // const toggleLoader = () => {
-  //   setIsLoading(!isLoading); 
-  //   };
-
   const toggleModal = () => {
     setShowModal(!showModal);
   };
 
-    // const { query, images, largeImageURL, isLoading, showModal, error } = this.state;
 
     return (
       <div>
         <SearchBar
           onHandleSubmit={handleSearchQuerySubmit}
-          // onSearchQueryChange={handleInputChange}
-          // value={query}
         />
         {error}
          {images.length > 0 && !error && (

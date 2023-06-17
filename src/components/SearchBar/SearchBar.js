@@ -8,7 +8,7 @@ export const SearchBar = ({ onHandleSubmit}) => {
 
     const onSubmit = evt => {
         evt.preventDefault();
-        if (query.trim() === 0) {
+        if (query.trim() === "") {
             return alert("Please use search field");
         }
         onHandleSubmit(query);
