@@ -16,26 +16,6 @@ const App = () => {
   const [showModal, setShowModal] = useState(null);
   const [largeImageURL, setLargeImageURL] = useState("");
   const [tags, setTags] = useState("");
- 
-  // state = {
-  //   images: [],
-  //   isLoading: false,
-  //   query: "",
-  //   pageNr: 1,
-  //   error: null,
-  //   showModal: null,
-  //   largeImageURL: "",
-  // };
-
-  // componentDidUpdate(_, prevState) {
-  //   if (prevState.query !== this.state.query) {
-  //     this.setState({
-  //       images: [],
-  //       pageNr: 1,
-  //       error: null
-  //     });
-  //   }
-  // }
 
   useEffect(() => {
     if (!query) return;
