@@ -17,14 +17,6 @@ const Modal = ({onToggleModal, largeImageURL, tags}) => {
         };
     }, [onToggleModal]);
 
-    // componentDidMount() {
-    // }
-
-    // componentWillUnmount() {
-    // }
-
-    // handleKeyDown = evt => {
-    // };
 
     const handleBackdropClick = evt => {
         if (evt.currentTarget === evt.target) {
@@ -32,7 +24,7 @@ const Modal = ({onToggleModal, largeImageURL, tags}) => {
         }
     };
 
-    // const { largeImageURL, tags } = this.props;
+
     return (
         <div className={css.Overlay} onClick={handleBackdropClick}>
             <div className={css.Modal}>

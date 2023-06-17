@@ -41,24 +41,15 @@ const App = () => {
     if (!query) return;
 
     const getImages = async () => {
-    
-      // if (query.trim() === '') {
-      //   alert('Please, use search field! ')
-      // }
-    
-      // toggleLoader();
-
       try {
         const request = await fetchImages(query, pageNr);
-        // this.setState(({ images, pageNr }) => ({
-        //   images: [...images, ...request],
-        //   pageNr: pageNr + 1,
+
         if (request.length === 0) {
-          setError({ error: `${query} not found` });
+          setError(`${query} not found`);
         }
         setImages(prevImages => [...prevImages, ...request]);
       } catch (err) {
-        setError({ error: err });
+        setError(err);
       } finally {
         setIsLoading(false);
       }
@@ -119,9 +110,9 @@ const App = () => {
     return (
       <div>
         <SearchBar
-          onSubmit={handleSearchQuerySubmit}
-          onSearchQueryChange={handleInputChange}
-          value={query}
+          onHandleSubmit={handleSearchQuerySubmit}
+          // onSearchQueryChange={handleInputChange}
+          // value={query}
         />
         {error}
          {images.length > 0 && !error && (
