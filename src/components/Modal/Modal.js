@@ -1,38 +1,45 @@
 import css from '../Styles.module.css';
-import { Component } from 'react';
+import { useEffect } from 'react';
 
 
-export class Modal extends Component {
+const Modal = ({onToggleModal, largeImageURL, tags}) => {
 
-    componentDidMount() {
-        window.addEventListener('keydown', this.handleKeyDown);
-    }
+    useEffect(() => {
+        const handleKeyDown = evt => {
+            if (evt.code === 'Escape') {
+                onToggleModal();
+            }
+        };
+        window.removeEventListener('keydown', handleKeyDown);
 
-    componentWillUnmount() {
-        window.removeEventListener('keydown', this.handleKeyDown);
-    }
+        return () => {
+            window.addEventListener('keydown', handleKeyDown);
+        };
+    }, [onToggleModal]);
 
-    handleKeyDown = evt => {
-        if (evt.code === 'Escape') {
-            this.props.onToggleModal();
-        }
-    };
+    // componentDidMount() {
+    // }
 
-    handleBackdropClick = evt => {
+    // componentWillUnmount() {
+    // }
+
+    // handleKeyDown = evt => {
+    // };
+
+    const handleBackdropClick = evt => {
         if (evt.currentTarget === evt.target) {
-            this.props.onToggleModal();
+            onToggleModal();
         }
     };
 
- 
-    render() {
-        const { largeImageURL, tags } = this.props;
-        return (
-            <div className={css.Overlay} onClick={this.handleBackdropClick}>
-                <div className={css.Modal}>
-                    <img src={largeImageURL} alt={tags} />
-                </div>
+    // const { largeImageURL, tags } = this.props;
+    return (
+        <div className={css.Overlay} onClick={handleBackdropClick}>
+            <div className={css.Modal}>
+                <img src={largeImageURL} alt={tags} />
             </div>
-        );
+        </div>
+    );
     }
-}
+
+export default Modal;

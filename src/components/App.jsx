@@ -3,7 +3,7 @@ import { SearchBar } from './SearchBar/SearchBar';
 import { fetchImages } from "./api/api";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
 import { Button } from "./Button/Button";
-import { Modal } from "./Modal/Modal";
+import Modal from "./Modal/Modal";
 import { Loader } from "./Loader/Loader";
 
 
@@ -15,6 +15,7 @@ const App = () => {
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(null);
   const [largeImageURL, setLargeImageURL] = useState("");
+  const [tags, setTags] = useState("");
  
   // state = {
   //   images: [],
@@ -64,13 +65,14 @@ const App = () => {
       }
     }
     getImages();
-  }, [query, pageNr]);
+  }, [query, pageNr, toggleLoader]);
 
   
 
   const handleInputChange = evt => {
-    const { name, value } = evt.target;
-    this.setState({ [name]: value });
+    // const { name, value } = evt.target;
+    // this.setState({ [name]: value });
+    setQuery(evt.currentTarget.value);
   };
 
   const handleSearchQuerySubmit = newSearch => {
@@ -129,8 +131,10 @@ const App = () => {
         {!isLoading && images.length >= 12 && !error &&
           (<Button onLoadMore={onLoadMore} />)}
         {showModal && (
-          <Modal onToggleModal={toggleModal}
-            largeImageURL={largeImageURL} />
+          <Modal
+            onToggleModal={toggleModal}
+            largeImageURL={largeImageURL}
+            tags={tags}/>
         )}
       </div>
     );
