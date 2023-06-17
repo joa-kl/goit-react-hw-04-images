@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { SearchBar } from './SearchBar/SearchBar';
 import { fetchImages } from "./api/api";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
@@ -41,31 +41,31 @@ const App = () => {
     if (!query) return;
 
     const getImages = async () => {
-      // const { query, pageNr } = this.state;
-      if (query.trim() === '') {
-        alert('Please, use search field! ')
-      }
     
-      toggleLoader();
+      // if (query.trim() === '') {
+      //   alert('Please, use search field! ')
+      // }
+    
+      // toggleLoader();
 
       try {
         const request = await fetchImages(query, pageNr);
         // this.setState(({ images, pageNr }) => ({
         //   images: [...images, ...request],
         //   pageNr: pageNr + 1,
-        setImages(prevImages => [...prevImages, ...request]);
-      
         if (request.length === 0) {
-          setError({ error: `${query} not found` })
+          setError({ error: `${query} not found` });
         }
+        setImages(prevImages => [...prevImages, ...request]);
       } catch (err) {
         setError({ error: err });
       } finally {
-        toggleLoader();
+        setIsLoading(false);
       }
-    }
+    };
+
     getImages();
-  }, [query, pageNr, toggleLoader]);
+  }, [query, pageNr]);
 
   
 
@@ -106,9 +106,9 @@ const App = () => {
     toggleModal(!isLoading);
   };
 
-  const toggleLoader = () => {
-    setIsLoading(!isLoading); 
-    };
+  // const toggleLoader = () => {
+  //   setIsLoading(!isLoading); 
+  //   };
 
   const toggleModal = () => {
     setShowModal(!showModal);
