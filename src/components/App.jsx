@@ -15,7 +15,7 @@ const App = () => {
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(null);
   const [largeImageURL, setLargeImageURL] = useState("");
-  const [tags, setTags] = useState("");
+  // const [tags, setTags] = useState("");
 
   useEffect(() => {
     if (!query) return;
@@ -81,7 +81,7 @@ const App = () => {
           <Modal
             onToggleModal={toggleModal}
             largeImageURL={largeImageURL}
-            tags={tags}/>
+            />
         )}
       </div>
     );

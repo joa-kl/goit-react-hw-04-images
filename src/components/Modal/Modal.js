@@ -2,7 +2,7 @@ import css from '../Styles.module.css';
 import { useEffect } from 'react';
 
 
-const Modal = ({onToggleModal, largeImageURL, tags}) => {
+const Modal = ({onToggleModal, largeImageURL}) => {
 
     useEffect(() => {
         const handleKeyDown = evt => {
@@ -28,7 +28,7 @@ const Modal = ({onToggleModal, largeImageURL, tags}) => {
     return (
         <div className={css.Overlay} onClick={handleBackdropClick}>
             <div className={css.Modal}>
-                <img src={largeImageURL} alt={tags} />
+                <img src={largeImageURL} alt="" />
             </div>
         </div>
     );
