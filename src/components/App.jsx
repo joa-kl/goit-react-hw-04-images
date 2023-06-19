@@ -57,7 +57,7 @@ const App = () => {
 
   const onOpenModal = evt => {
     setLargeImageURL(evt.target.dataset.source );
-    toggleModal(!isLoading);
+    toggleModal();
   };
 
   const toggleModal = () => {
